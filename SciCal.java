@@ -864,15 +864,108 @@ public class SciCal extends javax.swing.JFrame
     }                                        
 
     private void custombaselogarithmActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
+        try
+    {
+        String input = jTextArea1.getText();
+        String[] numbers = input.split(" ");
+
+        if (numbers.length != 2) 
+        {
+            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            return;
+        }
+
+        double base = Double.parseDouble(numbers[0]);
+        double num = Double.parseDouble(numbers[1]);
+
+        if (num <= 0 || base <= 0 || base == 1) 
+        {
+            jTextArea1.setText("Math error");
+            return;
+        }
+
+        double result = Math.log(num) / Math.log(base);
+        jTextArea1.setText(String.valueOf(result));
+    } 
+    catch (NumberFormatException e) 
+    {
+        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+    }
     }                                                   
 
     private void permutationActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        try 
+    {
+        String input = jTextArea1.getText();
+        String[] numbers = input.split(" ");
+
+        if (numbers.length != 2) 
+        {
+            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            return;
+        }
+
+        int n = Integer.parseInt(numbers[0]); 
+        int r = Integer.parseInt(numbers[1]); 
+
+        if (n < 0 || r < 0 || r > n) 
+        {
+            jTextArea1.setText("Math error");
+            return;
+        }
+
+        double result = factorial(n) / factorial(n - r);
+        jTextArea1.setText(String.valueOf(result));
+    } 
+    catch (NumberFormatException e) 
+    {
+        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+    }
+}
+private double factorial(int number) {
+    double fact = 1;
+    for (int i = 1; i <= number; i++) {
+        fact *= i;
+    }
+    return fact;
+
     }                                           
 
     private void combinationActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        try 
+    {
+        String input = jTextArea1.getText();
+        String[] numbers = input.split(" ");
+
+        if (numbers.length != 2) 
+        {
+            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            return;
+        }
+
+        int n = Integer.parseInt(numbers[0]);
+        int r = Integer.parseInt(numbers[1]);
+
+        if (n < 0 || r < 0 || r > n) 
+        {
+            jTextArea1.setText("Math error");
+            return;
+        }
+        double result = factorial(n) / (factorial(r) * factorial(n - r));
+        jTextArea1.setText(String.valueOf(result));
+    } 
+    catch (NumberFormatException e) 
+    {
+        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+    }
+}
+
+private double factorial3(int number) {
+    double fact = 1;
+    for (int i = 1; i <= number; i++) {
+        fact *= i;
+    }
+    return fact;
     }                                           
 
     private void shiftActionPerformed(java.awt.event.ActionEvent evt) {                                      
@@ -888,7 +981,18 @@ public class SciCal extends javax.swing.JFrame
     }                                         
 
     private void summationActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+        try {
+        String input = jTextArea1.getText();
+        String[] numbers = input.split(" "); 
+        double sum = 0; 
+        for (String number : numbers) {
+            sum += Double.parseDouble(number); 
+        }
+        jTextArea1.setText("Sum: " + String.valueOf(sum));
+    } catch (NumberFormatException e) {
+        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph"); 
+    }
+
     }                                         
 
     private void capitalpiActionPerformed(java.awt.event.ActionEvent evt) {
@@ -938,7 +1042,17 @@ public class SciCal extends javax.swing.JFrame
     }                                       
 
     private void sineActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        // TODO add your handling code here:
+        try {
+        String input = jTextArea1.getText();
+        double degrees = Double.parseDouble(input); 
+        double radians = Math.toRadians(degrees);
+        double result = Math.sin(radians);
+
+        jTextArea1.setText("sin(" + degrees + ") = " + result);
+    } catch (NumberFormatException e) {
+        jTextArea1.setText("Invalid input. Please enter a valid number.");
+    }
+
     }                                    
 
     private void cosineActionPerformed(java.awt.event.ActionEvent evt) {
@@ -986,11 +1100,57 @@ public class SciCal extends javax.swing.JFrame
     }                                          
 
     private void factorialsActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
+        try 
+    {
+        String input = jTextArea1.getText();
+        int number = Integer .parseInt(input); 
+
+        if (number < 0) 
+        {
+            jTextArea1.setText("Math error: Factorial is not defined for negative numbers.");
+            return;
+        }
+
+        double result = factorial2(number);
+        jTextArea1.setText(String.valueOf(result)); 
+    } 
+    catch (NumberFormatException e) 
+    {
+        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph"); 
+    }
+}
+
+private double factorial2(int number) {
+    double fact = 1; 
+    for (int i = 1; i <= number; i++) {
+        fact *= i; 
+    }
+    return fact; 
+    }                                      
 
     private void customexponentActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        try 
+    {
+        String input = jTextArea1.getText();
+        String[] numbers = input.split(" ");
+
+        if (numbers.length != 2) 
+        {
+            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            return;
+        }
+
+        double num1 = Double.parseDouble(numbers[0]);
+        double num2 = Double.parseDouble(numbers[1]);
+
+        double result = Math.pow(num1, num2);
+        jTextArea1.setText(String.valueOf(result));
+    } 
+    catch (NumberFormatException e) 
+    {
+        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+    }
+
     }                                              
 
     /**
