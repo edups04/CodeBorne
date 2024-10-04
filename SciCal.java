@@ -647,7 +647,7 @@ public class SciCal extends javax.swing.JFrame
 
             if (numbers.length != 2) 
             {
-                jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+                jTextArea1.setText("%");
                 return;
             }
 
@@ -656,7 +656,7 @@ public class SciCal extends javax.swing.JFrame
 
             if (num2 == 0) 
             {
-                jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+                jTextArea1.setText("%");
             } 
             else 
             {
@@ -666,7 +666,7 @@ public class SciCal extends javax.swing.JFrame
         }   
         catch (NumberFormatException e) 
         {
-            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            jTextArea1.setText("%");
         }
     }                                       
 
@@ -687,7 +687,7 @@ public class SciCal extends javax.swing.JFrame
 
             if (numbers.length != 2) 
             {
-                jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+                jTextArea1.setText("+");
                 return;
             }
 
@@ -699,7 +699,7 @@ public class SciCal extends javax.swing.JFrame
         } 
         catch (NumberFormatException e) 
         {
-            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            jTextArea1.setText("+");
         }
     }                                   
 
@@ -711,7 +711,7 @@ public class SciCal extends javax.swing.JFrame
         
         if (numbers.length != 2) 
         {
-            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            jTextArea1.setText("-");
             return;
         }
         
@@ -723,10 +723,10 @@ public class SciCal extends javax.swing.JFrame
     } 
     catch (NumberFormatException e) 
     {
-        jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+        jTextArea1.setText("-");
     }
     }  
-    
+
     private void nineActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
         jTextArea1.setText(jTextArea1.getText() + "9");
@@ -779,7 +779,7 @@ public class SciCal extends javax.swing.JFrame
 
             if (numbers.length != 2) 
             {
-                jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+                jTextArea1.setText("/");
                 return;
             }
 
@@ -793,12 +793,12 @@ public class SciCal extends javax.swing.JFrame
             } 
             else 
             {
-                jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+                jTextArea1.setText("/");
             }
         } 
         catch (NumberFormatException e) 
         {
-            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            jTextArea1.setText("/");
         }
     }                                        
 
@@ -810,7 +810,7 @@ public class SciCal extends javax.swing.JFrame
 
             if (numbers.length != 2) 
             {
-                jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+                jTextArea1.setText("*");
                 return;
             }
 
@@ -822,7 +822,7 @@ public class SciCal extends javax.swing.JFrame
         } 
         catch (NumberFormatException e) 
         {
-            jTextArea1.setText("manaloto.loudel@gordoncollege.edu.ph");
+            jTextArea1.setText("*");
         }
     }                                              
 
@@ -836,6 +836,7 @@ public class SciCal extends javax.swing.JFrame
                                     
     private void onoffallclearActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
+        jTextArea1.setText("");
     }                                             
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {                                       
@@ -890,9 +891,31 @@ public class SciCal extends javax.swing.JFrame
         // TODO add your handling code here:
     }                                         
 
-    private void capitalpiActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-    }                                         
+    private void capitalpiActionPerformed(java.awt.event.ActionEvent evt) {
+        String inputText = jTextArea1.getText(); // Get input from the text area
+        
+        String[] inputs = inputText.split(","); // Expecting comma-separated values, e.g., "1,10"
+        
+        try {
+            // Parse the start and end values from the input
+            int start = Integer.parseInt(inputs[0].trim());
+            int end = Integer.parseInt(inputs[1].trim());
+    
+            // Initialize product to 1
+            double product = 1;
+            
+            // Calculate the product from start to end
+            for (int i = start; i <= end; i++) {
+                product *= i;
+            }
+    
+            // Display the result in the text area
+            jTextArea1.setText(String.valueOf(product));
+    
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            jTextArea1.setText("Invalid Input, please enter two numbers separated by a comma"); // Handle input errors
+        }
+    }                                       
 
     private void integralActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
@@ -918,13 +941,45 @@ public class SciCal extends javax.swing.JFrame
         // TODO add your handling code here:
     }                                    
 
-    private void cosineActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    }                                      
+    private void cosineActionPerformed(java.awt.event.ActionEvent evt) {
+        String inputText = jTextArea1.getText(); // Get input from the text area
+        
+        try {
+            // Parse the input to a double (assumed to be in degrees)
+            double degrees = Double.parseDouble(inputText.trim());
+            
+            // Convert degrees to radians since Math.cos works with radians
+            double radians = Math.toRadians(degrees);
+            
+            // Calculate the cosine of the input
+            double result = Math.cos(radians);
+            
+            // Display the result in the text area
+            jTextArea1.setText(String.valueOf(result));
+        } catch (NumberFormatException e) {
+            jTextArea1.setText("Invalid Input, please enter a valid number"); // Handle input errors
+        }
+    }                                  
 
-    private void tangentActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-    }                                       
+ private void tangentActionPerformed(java.awt.event.ActionEvent evt) {
+    String inputText = jTextArea1.getText(); // Get input from the text area
+    
+    try {
+        // Parse the input to a double (assumed to be in degrees)
+        double degrees = Double.parseDouble(inputText.trim());
+        
+        // Convert degrees to radians since Math.tan works with radians
+        double radians = Math.toRadians(degrees);
+        
+        // Calculate the tangent of the input
+        double result = Math.tan(radians);
+        
+        // Display the result in the text area
+        jTextArea1.setText(String.valueOf(result));
+    } catch (NumberFormatException e) {
+        jTextArea1.setText("Invalid Input, please enter a valid number"); // Handle invalid input
+    }
+}                                      
 
     private void customrootActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
